@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Título Principal -->
+  <title>Vanessa & Esdras | Nosso Casamento</title>
+
+  <!-- SEO Básico (Para Google e outros buscadores) -->
+  <meta name="description"
+    content="Gostaríamos de compartilhar esse momento especial com você. Confira os detalhes do nosso grande dia, lista de presentes e confirme sua presença!" />
+  <meta name="author" content="Esdras Ribeiro" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vanessaeesdras.pages.dev/" />
+
+  <!-- Open Graph (Otimização para WhatsApp, Facebook, Instagram) -->
+  <meta property="og:title" content="Casamento de Vanessa & Esdras" />
+  <meta property="og:description"
+    content="Gostaríamos de compartilhar esse momento especial com você. Confira os detalhes do nosso grande dia!" />
+  <meta property="og:image" content="https://vanessaeesdras.pages.dev/img/preload_logo.png" />
+  <meta property="og:url" content="https://vanessaeesdras.pages.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Casamento de Vanessa & Esdras" />
+  <meta name="twitter:description"
+    content="Gostaríamos de compartilhar esse momento especial com você. Confira os detalhes do nosso grande dia!" />
+  <meta name="twitter:image" content="https://vanessaeesdras.pages.dev/img/preload_logo.png" />
+
+  <!-- Personalização Mobile -->
+  <meta name="theme-color" content="#8B4513" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml" />
+  <link rel="icon" href="img/logo.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Otimização de Performance (Preload e Preconnect) -->
+  <link rel="preload" as="image" href="img/preload_logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Estilos e Fontes -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div id="access-modal" class="access-modal">
+    <div class="access-content">
+      <h2 style="margin-bottom: 5px">Bem-vindos!</h2>
+      <p>
+        Por favor, insira a chave de acesso que enviamos junto com o seu
+        convite.
+      </p>
+      <input type="password" id="access-password" placeholder="Digite a chave aqui" />
+      <button id="btn-access" class="btn-submit" style="width: 100%">
+        Entrar
+      </button>
+      <p id="access-error" style="
+            color: #ff4d4d;
+            display: none;
+            margin-top: 15px;
+            font-weight: bold;
+          ">
+        Chave incorreta. Tente novamente!
+      </p>
+    </div>
+  </div>
+
+  <header class="hero" id="home">
+    <div class="hero-content">
+      <img src="img/LOGO OFICIAL.svg" alt="Logo Vanessa & Esdras" class="hero-logo">
+      <h1>Vanessa & Esdras</h1>
+      <p class="tagline">Eu gosto da ideia de envelhecer com você...</p>
+      <div id="countdown" class="countdown"></div>
+      <a href="#trilha-sonora" class="btn-scroll">Comece a experiência</a>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-brand">V | E</a>
+      <div class="nav-links">
+        <ul>
+          <li><a href="#home">Início</a></li>
+          <li><a href="#trilha-sonora">Trilha Sonora</a></li>
+          <li><a href="#nossa-historia">VeE</a></li>
+          <li><a href="#rsvp">Confirmar Presença</a></li>
+          <li><a href="#presentes">Lista de Presentes</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#mensagens">Mensagens</a></li>
+        </ul>
+      </div>
+      <button class="menu-toggle" id="menu-toggle">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="trilha-sonora" class="section-padded bg-light">
+    <div class="container">
+      <h2>Nossa Trilha Sonora</h2>
+      <p>
+        <strong>Aperte o play, siga nossa playlist e entre no clima do nosso grande
+          dia!</strong>
+      </p>
+      <div class="spotify-embed-container">
+        <iframe data-testid="embed-iframe" style="border-radius: 12px"
+          src="https://open.spotify.com/embed/playlist/0a0p40RyDBL0odjg3CbDVs?utm_source=generator&theme=0" width="100%"
+          height="352" frameborder="0" allowfullscreen="" allow="
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              fullscreen;
+              picture-in-picture;
+            " loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="nossa-historia" class="section-padded">
+    <div class="container">
+      <h2>Vanessa & Esdras</h2>
+      <div class="historia-container">
+        <div class="video-item-wrapper">
+          <div class="historia-video">
+            <video src="videos/nossa-historia.mp4" autoplay loop muted playsinline></video>
+            <a href="https://www.instagram.com/solucaslima/" target="_blank" class="photo-credit">
+              @solucaslima
+            </a>
+          </div>
+        </div>
+
+
+        <div class="citacoes-wrapper">
+          <div class="citacoes-container">
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "O Amor é a única coisa que transcende o tempo e o espaço
+                [...]"
+              </p>
+              <span class="citacao-autor">- Interestelar</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Ainda bem que você vive comigo<br />
+                Porque senão como seria esta vida?"
+              </p>
+              <span class="citacao-autor">- Vanessa da Mata</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Luz das estrelas, laço do infinito
+                <br />Gosto tanto dela assim"
+              </p>
+              <span class="citacao-autor">- Djavan</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Quero ter você nos dias mais incertos
+                <br />Só pra me esconder na paz de um abraço teu"
+              </p>
+              <span class="citacao-autor">- Lorena Chaves</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Em você eu tenho o que falta em mim
+                <br />E descubro o que tenho de melhor pra lhe oferecer"
+              </p>
+              <span class="citacao-autor">- Crombie</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Eu digo olá pro futuro
+                <br />Só de saber que você vai estar em meus planos"
+              </p>
+              <span class="citacao-autor">- Supercombo</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Quem um dia irá dizer<br />
+                Que existe razão nas coisas feitas pelo coração? <br />
+                E quem irá dizer que não existe razão?
+              </p>
+              <span class="citacao-autor">- Renato Russo</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Meu amor é teu
+                <br />Mas dou-te mais uma vez. Meu bem!"
+              </p>
+              <span class="citacao-autor">- Marcelo Camelo</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Eu me sinto à vontade
+                <br />Pois partilhamos noites, ruas e sonhos <br />
+                Como se fossemos iguais"
+              </p>
+              <span class="citacao-autor">- Chorão</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "De vez em quando na vida se pode encontrar
+                <br />Raro mas não impossível, de fato, é amar"
+              </p>
+              <span class="citacao-autor">- O Terno</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Eu e você e mais nada e não sobra e não falta e não tem lugar
+                <br />Onde mais eu queira estar"
+              </p>
+              <span class="citacao-autor">- 5 a Seco</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Tudo em volta tem me confirmado, bebê
+                <br />Que eu e você somos coisa de alma"
+              </p>
+              <span class="citacao-autor">- Tim Bernardes</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Ó meu bem quero estar ao seu lado
+                <br />Quando amanhecer, quero estar ao seu lado"
+              </p>
+              <span class="citacao-autor">- Scalene</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Meu amor, eu agradeço
+                <br />Para sempre o dia que eu te conheci"
+              </p>
+              <span class="citacao-autor">- Tim Bernardes</span>
+            </div>
+
+            <div class="card-citacao">
+              <span class="quote-mark">"</span>
+              <p class="citacao-texto">
+                "Eu nasci pra você, cê nasceu pra mim
+                <br />E a gente junto é descomplicado"
+              </p>
+              <span class="citacao-autor">- Teago Oliveira</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rsvp" class="section-padded bg-light">
+    <div class="container">
+      <h2>Confirme Sua Presença</h2>
+      <p>
+        <strong>Sua presença é muito importante para a nossa festa! Por favor, confirme presença até a data
+          19/10/2026.</strong>
+      </p>
+
+      <div class="rsvp-container">
+        <div id="rsvp-step-1">
+          <p style="margin-bottom: 20px">
+            Digite seu nome ou da sua família
+            <strong>exatamente como está no convite:</strong>
+          </p>
+          <form id="form-busca-convidado" class="message-form">
+            <input type="text" id="busca-nome" placeholder="Ex: João da Silva" required />
+            <button type="submit" id="btn-buscar" class="btn-submit">
+              Buscar Convite
+            </button>
+          </form>
+          <p id="rsvp-erro" style="
+                display: none;
+                color: #ff4d4d;
+                margin-top: 15px;
+                font-weight: bold;
+              "></p>
+        </div>
+
+        <div id="rsvp-step-2" style="display: none">
+          <h3 id="nome-encontrado" style="color: var(--terracota-dark); margin-bottom: 10px"></h3>
+          <p>
+            Ficamos felizes em te encontrar na nossa lista! Por favor,
+            confirme o status da sua presença:
+          </p>
+          <form id="form-confirma-convidado" class="message-form" style="margin-top: 20px">
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="status_presenca" value="sim" required />
+                Sim, confirmamos presença!
+              </label>
+              <label>
+                <input type="radio" name="status_presenca" value="nao" />
+                Infelizmente, não poderemos comparecer.
+              </label>
+            </div>
+
+            <button type="submit" id="btn-confirmar" class="btn-submit">
+              Enviar Confirmação
+            </button>
+          </form>
+        </div>
+
+        <div id="rsvp-step-3" style="display: none; text-align: center">
+          <h3 style="color: var(--terracota-medium); font-size: 2.5rem">
+            Obrigado!
+          </h3>
+          <p id="rsvp-mensagem-sucesso" style="font-size: 1.1rem; font-weight: 700; margin-top: 15px"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="presentes" class="section-padded">
+      <div class="container">
+        <h2>Nossa Lista de Presentes</h2>
+        <p>
+          Sua presença é o que mais importa em nosso casamento!<br />
+          Essa é uma <strong style="color: #A0522D;">lista de sugestões de presentes</strong> para aqueles que desejarem contribuir com o nosso novo <strong style="color: #A0522D;">Lar</strong>.
+        </p>
+
+        <div class="gift-carousel-container">
+          <div class="gifts-grid">
+            <div class="gift-item">
+              <img
+                src="img/gift-free.png"
+                alt="Contribuição Livre"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Presente Livre</h3>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-almoco.webp"
+                alt="Lua de Mel"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Primeiro mês de jantar do casal</h3>
+                <p>R$ 500,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-almoco1.webp"
+                alt="Almoço"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Almoço de Lua de Mel</h3>
+                <p>R$ 250,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-massagem.jpg"
+                alt="massagem do noivo"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>
+                  Massagem relaxante para o noivo após ver a fatura do casório
+                </h3>
+                <p>R$ 200,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="https://m.media-amazon.com/images/I/71-trbNGenL._AC_SY300_SX300_QL70_ML2_.jpg"
+                alt="Airfryer"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Airfryer</h3>
+                <p>R$ 270,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://a.co/d/08rOPhQh"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-tpm.jpg"
+                alt="Ajuda para o noivo conter a noiva na TPM"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Ajuda para o noivo conter a noiva na TPM</h3>
+                <p>R$ 100,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-cafe.webp"
+                alt="Um quilo de café"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>1kg de café para os dias corridos pós-casamento</h3>
+                <p>R$ 80,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-boleira.webp"
+                alt="Boleira de Vidro"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Boleira de Vidro</h3>
+                <p>R$ 65,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/prato--boleira-gourmet-ruvolo-vidro--tampa-plastica-32cm/up/MLBU3436674843?pdp_filters=item_id%3AMLB5735598174&matt_tool=38524122#origin=whatsapp&sid=whatsapp&wid=MLB5735598174"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item indisponivel">
+              <img
+                src="img/gift-jogo-jantar.webp"
+                alt="Jogo de Jantar"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jogo de Jantar</h3>
+                <p>R$ 350,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/jogo-de-jantar-e-cha-20-pecas-unni-brisa-oxford-aw20-5903/p/MLB33795714?pdp_filters=item_id%3AMLB4481788370&matt_tool=38524122#origin=share&sid=share&wid=MLB4481788370&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-assadeiras.webp"
+                alt="Conjunto de Assadeiras"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Conjunto de Assadeiras</h3>
+                <p>R$ 70,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/kit-de-assadeiras-marinex-opaline-oval-3-pecas/p/MLB36936847?pdp_filters=item_id%3AMLB5263602702&matt_tool=38524122#origin=share&sid=share&wid=MLB5263602702&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-sabres.webp"
+                alt="Par de sabres de luz"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Par de sabres de luz</h3>
+                <p>R$ 100,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-ferro-de-passar.webp"
+                alt="Ferro de Passar"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Ferro de Passar</h3>
+                <p>R$ 90,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/electrolux-efficient-esi10-a-vapor-e-ferro-seco-cor-azul/p/MLB25396633?pdp_filters=item_id%3AMLB4063438401&attributes=COLOR%3AAzul_1f64b0_vpp%2CVOLTAGE%3A220V_177c66_vpp&matt_tool=38524122#origin=share&sid=share&wid=MLB4063438401&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-discussao.jpg"
+                alt="Kit de emergência para discussões"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Kit de emergência para discussões</h3>
+                <p>R$ 70,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-tabua-frios.webp"
+                alt="Tábua de Frios"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Tábua de Frios</h3>
+                <p>R$ 85,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/kit-petisqueira-tabua-bandeja-molheira-madeira-queijos-frios/up/MLBU3821603189?pdp_filters=item_id%3AMLB6416217644&matt_tool=38524122#origin=share&sid=share&wid=MLB6416217644&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-toalhas-de-rosto.webp"
+                alt="Toalhas De Rosto"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Toalhas De Rosto</h3>
+                <p>R$ 40,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/kit-5-toalhas-de-rosto-berlim-algodao-45x80cm--mch-toalhas/up/MLBU1158936140?pdp_filters=item_id%3AMLB3969991130&matt_tool=38524122#origin=share&sid=share&wid=MLB3969991130&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-sousplat.webp"
+                alt="Jogo de Sousplat mesa posta"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jogo de Sousplat mesa posta</h3>
+                <p>R$ 40,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://produto.mercadolivre.com.br/MLB-5331518394-jogo-americano-redondo-6-pecas-sousplat-facil-de-limpar-_JM?matt_tool=38524122#origin=share&sid=share&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-jarra.webp"
+                alt="Jarra De Vidro"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jarra De Vidro</h3>
+                <p>R$ 39,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/jarra-de-vidro-borossilicato-com-tampa-de-inox-18-litros/up/MLBU1473996377?pdp_filters=item_id%3AMLB4858248730&matt_tool=38524122#origin=share&sid=share&wid=MLB4858248730&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-liquidificador.webp"
+                alt="Liquidificador"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Liquidificador 3 em 1</h3>
+                <p>R$ 250,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://a.co/d/0ewFdYXt"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="https://http2.mlstatic.com/D_NQ_NP_2X_661990-MLA99395480060_112025-F.webp"
+                alt="Sanduicheira"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Sanduicheira</h3>
+                <p>R$ 114,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/sanduicheira-e-grill-britnia-bgr16-2-em-1-redstone-750w-cor-preto-com-prata/p/MLB29225270?pdp_filters=item_id%3AMLB5908953674&attributes=COLOR%3APreto_com_Prata_7a35786b_vpp%2CVOLTAGE%3A220V_177c66_vpp&matt_tool=38524122#origin=share&sid=share&wid=MLB5908953674&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-panelas.webp"
+                alt="Jogo de Panelas"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jogo de Panelas</h3>
+                <p>R$ 230,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/jogo-de-panelas-essenza-di-cheff-10-pecas-antiaderente-aluminio-teflon/p/MLB41139235?pdp_filters=item_id%3AMLB5113656212&matt_tool=38524122#origin=share&sid=share&wid=MLB5113656212&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-panela-pressao.webp"
+                alt="Panela de Pressão"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Panela de Pressão</h3>
+                <p>R$ 150,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/panela-de-presso-45-litros-antiaderente-fechamento-externo/p/MLB61738923?pdp_filters=item_id%3AMLB6167055636&matt_tool=38524122#origin=share&sid=share&wid=MLB6167055636&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-facas.webp"
+                alt="Jogo de Facas"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jogo de Facas</h3>
+                <p>R$ 66,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/jogo-de-facas-com-suporte-7-pecas-com-cepo-madeira-aco-inox-cor-preto/p/MLB27409977?pdp_filters=item_id%3AMLB5343895138&matt_tool=38524122#origin=share&sid=share&wid=MLB5343895138&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="https://m.media-amazon.com/images/I/81YBt5dX0qL._AC_SX679_.jpg"
+                alt="Jogo de Potes"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jogo de Potes</h3>
+                <p>R$ 123,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://a.co/d/06whEDBK"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="https://http2.mlstatic.com/D_NQ_NP_2X_625426-MLB110310228748_052026-F.webp"
+                alt="Jogo de Potes"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Porta Tempero</h3>
+                <p>R$ 100,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/porta-tempero-de-madeira-condimentos-giratorio-bambu-8-potes/up/MLBU3937078677?pdp_filters=item_id%3AMLB6717915284&matt_tool=38524122#origin=share&sid=share&wid=MLB6717915284&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-tacas.webp"
+                alt="Conjunto de Taças"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jogo de Taças</h3>
+                <p>R$ 160,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/jogo-6-tacas-cristal-titanium-vinho-tinto-560ml-xtra-bohemia/up/MLBU3903195352?pdp_filters=item_id%3AMLB4602043427&matt_tool=38524122#origin=share&sid=share&wid=MLB4602043427&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="https://http2.mlstatic.com/D_NQ_NP_2X_887522-MLA96155612505_102025-F.webp"
+                alt="Conjunto de Taças Dublin"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jogo de Taças Dublin</h3>
+                <p>R$ 55,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/jogo-taca-cerveja-chopp-dublin-nadir-400ml-kit-6-unidades/p/MLB26013546?pdp_filters=item_id%3AMLB4376571117&matt_tool=38524122#origin=share&sid=share&wid=MLB4376571117&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-copos.webp"
+                alt="Jogo de Copos"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jogo de Copos</h3>
+                <p>R$ 40,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/jogo-copos-vidro-dubai-long-drink-agua-480ml-nadir-6-pecas/p/MLB24705160?pdp_filters=item_id%3AMLB4122438183&matt_tool=38524122#origin=share&sid=share&wid=MLB4122438183&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-tacas-sobremesas.webp"
+                alt="Jogo de Taças de Sobremesa"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Jogo de Taças de Sobremesa</h3>
+                <p>R$ 45,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/jogo-de-6-tacas-310ml-para-sobremesa-canelada-riscada-cor-transparente/p/MLB32038994?pdp_filters=item_id%3AMLB6594207750&matt_tool=38524122#origin=share&sid=share&wid=MLB6594207750&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="https://m.media-amazon.com/images/I/71-trbNGenL._AC_SY300_SX300_QL70_ML2_.jpg"
+                alt="Batedeira"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Batedeira</h3>
+                <p>R$ 270,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://a.co/d/01hSkz6o"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-kit-tigelas.webp"
+                alt="Kit Tigelas Cerâmica"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Kit Tigelas Cerâmica</h3>
+                <p>R$ 130,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/tigela-conic-ceramica-estampa-cena-inglesa-155cm-6un-biona/up/MLBU2634049910?pdp_filters=item_id%3AMLB5148973320&matt_tool=38524122#origin=share&sid=share&wid=MLB5148973320&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="https://http2.mlstatic.com/D_NQ_NP_2X_618258-MLB78390635707_082024-F.webp"
+                alt="Kit Tigelas Cerâmica"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Kit Açucareiro</h3>
+                <p>R$ 120,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/kit-acucareiro-meleira-molheira-manteigueira-de-vidro/up/MLBU789358316?pdp_filters=item_id%3AMLB4996060894&matt_tool=38524122#origin=share&sid=share&wid=MLB4996060894&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-edredom-sherpa.webp"
+                alt="Edredom Sherpa"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Edredom Sherpa</h3>
+                <p>R$ 160,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/edredom-sherpa-casal-queen-aconchegante-ebenezer-shop-dupla-face-cinza/p/MLB47630555?pdp_filters=item_id%3AMLB5336638544&matt_tool=38524122#origin=share&sid=share&wid=MLB5336638544&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-jogo-de-cama.webp"
+                alt="Jogo de Cama"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Kit Cobre Leito</h3>
+                <p>R$ 80,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/kit-cobre-leito-colcha-casal-3-pecas-boutis-lisas-dupla-face-porta-travesseiro-aba-americana-oslo-areia/p/MLB65809373?pdp_filters=item_id%3AMLB6292634130&matt_tool=38524122#origin=share&sid=share&wid=MLB6292634130&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-edredom.webp"
+                alt="Edredom"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Edredom/Colcha</h3>
+                <p>R$ 170,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/kit-aconchego-casal-queen-edredom-jogo-lencol-roupa-de-cama/p/MLB19880833?pdp_filters=item_id%3AMLB5029240050&matt_tool=38524122#origin=share&sid=share&wid=MLB5029240050&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gift-item">
+              <img
+                src="img/gift-frigideira.webp"
+                alt="Frigideira Tramontina"
+                class="gift-img"
+                loading="lazy"
+              />
+              <div class="gift-overlay">
+                <h3>Frigideira Tramontina</h3>
+                <p>R$ 78,00</p>
+                <div class="gift-buttons">
+                  <button class="btn-gift btn-pix">Pix</button>
+                  <button
+                    class="btn-gift btn-comprar"
+                    data-link="https://www.mercadolivre.com.br/frigideira-tramontina-antiaderente-tampa-e-espatula-16-e-20/up/MLBU3460149830?pdp_filters=item_id%3AMLB5760024154&matt_tool=38524122#origin=share&sid=share&wid=MLB5760024154&action=copy"
+                  >
+                    Comprar item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="pix-info" class="pix-info-hidden">
+          <p>
+            Para nos presentear, utilize a chave Pix abaixo ou aponte a câmera
+            para o QR Code:
+          </p>
+          <p>
+            <strong>Chave Pix:</strong> fdaf6a81-a63a-4c13-b5ed-5f5843a73e0d
+          </p>
+          <img
+            src="img/qrcode-pix.png"
+            alt="QR Code Pix"
+            class="pix-qrcode"
+          />
+          <p>Obrigado pela sua generosidade!</p>
+        </div>
+      </div>
+    </section>
+
+  <section id="galeria" class="section-padded bg-light">
+    <div class="container">
+      <h2>Nossa Galeria</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item-wrapper">
+          <img src="img/IMG_8130.webp" alt="Casal" class="gallery-item" loading="lazy" />
+          <a href="https://www.instagram.com/solucaslima/" target="_blank" class="photo-credit">@solucaslima</a>
+        </div>
+        <div class="gallery-item-wrapper">
+          <img src="img/IMG_8145.webp" alt="Casal" class="gallery-item" loading="lazy" />
+          <a href="https://www.instagram.com/solucaslima/" target="_blank" class="photo-credit">@solucaslima</a>
+        </div>
+        <div class="gallery-item-wrapper">
+          <img src="img/IMG_8149.webp" alt="Casal" class="gallery-item" loading="lazy" />
+          <a href="https://www.instagram.com/solucaslima/" target="_blank" class="photo-credit">@solucaslima</a>
+        </div>
+        <div class="gallery-item-wrapper">
+          <img src="img/IMG_8178.webp" alt="Casal" class="gallery-item" loading="lazy" />
+          <a href="https://www.instagram.com/solucaslima/" target="_blank" class="photo-credit">@solucaslima</a>
+        </div>
+        <div class="gallery-item-wrapper">
+          <img src="img/IMG_8229.webp" alt="Casal" class="gallery-item" loading="lazy" />
+          <a href="https://www.instagram.com/solucaslima/" target="_blank" class="photo-credit">@solucaslima</a>
+        </div>
+        <div class="gallery-item-wrapper">
+          <img src="img/IMG_8231.webp" alt="Casal" class="gallery-item" loading="lazy" />
+          <a href="https://www.instagram.com/solucaslima/" target="_blank" class="photo-credit">@solucaslima</a>
+        </div>
+
+        <div class="gallery-item-wrapper photo-hidden">
+          <img src="img/IMG_8130.webp" alt="Casal" class="gallery-item" loading="lazy" />
+          <a href="https://www.instagram.com/solucaslima/" target="_blank" class="photo-credit">@solucaslima</a>
+        </div>
+        <div class="gallery-item-wrapper photo-hidden">
+          <img src="img/IMG_8145.webp" alt="Casal" class="gallery-item" loading="lazy" />
+          <a href="https://www.instagram.com/solucaslima/" target="_blank" class="photo-credit">@solucaslima</a>
+        </div>
+      </div>
+      <button id="load-more-photos" class="btn-submit">Ver mais fotos</button>
+      <div class="upload-section">
+        <h3>Fotografou um momento especial?</h3>
+        <p>
+          Adoraríamos ver o nosso dia através dos seus olhos! Compartilhe suas
+          fotos conosco em nosso álbum compartilhado.
+        </p>
+        <a href="https://photos.app.goo.gl/exMNcia2ho1R4Vu3A" target="_blank" class="btn-submit">Enviar Suas Fotos</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="mensagens" class="section-padded">
+    <div class="container">
+      <h2>Deixe sua Mensagem</h2>
+      <p>Suas palavras de carinho são muito importantes para nós!</p>
+
+      <form id="form-mensagem" class="message-form">
+        <input type="text" id="nome-convidado" placeholder="Seu Nome" required />
+        <textarea id="texto-mensagem" placeholder="Sua Mensagem de Carinho" required></textarea>
+        <button type="submit" id="btn-enviar" class="btn-submit">
+          Enviar Mensagem
+        </button>
+      </form>
+
+      <div id="mural" class="mural-container">
+        <p>Carregando mensagens com carinho...</p>
+      </div>
+
+      <p class="verse-text" style="margin-top: 40px">
+        <strong>Nós amamos porque ele nos amou primeiro. </strong>I João 4:19
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <h2 class="footer-logo">V & E</h2>
+      <div class="footer-divider"></div>
+      <p class="footer-copy">
+        ©<span id="current-year"></span> Esdras Ribeiro | Todos os direitos reservados
+      </p>
+      <p class="footer-love">
+        Feito com <strong>Amor </strong><span>♥</span>
+      </p>
+    </div>
+  </footer>
+
+  <a href="#home" class="back-to-top">↑</a>
+
+  <div id="gallery-modal" class="modal">
+    <span class="close-modal">×</span>
+    <span class="prev">❮</span>
+    <img class="modal-content" id="modal-image" />
+    <span class="next">❯</span>
+    <div id="caption" class="modal-caption"></div>
+  </div>
+
+  <div id="delivery-modal" class="modal">
+    <span class="close-delivery-modal close-modal">×</span>
+    <div class="modal-content delivery-content">
+      <h3>Dados para Entrega</h3>
+      <p>
+        Que alegria receber este presente! Por favor, no momento da compra,
+        cadastre o seguinte endereço para entrega, caso queira que o presente
+        seja entregue diretamente para nós.
+      </p>
+      <div class="address-box">
+        <strong>Rua Maiquinique, 87, Bairro Presidente Médici - Referência: Black
+          Joia<br />
+          Itarantim - BA<br />
+          CEP: 45780-000</strong>
+      </div>
+      <p style="
+            margin-top: 15px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            font-style: italic;
+          ">
+        *Copie o endereço acima. Ao clicar no botão abaixo, a loja abrirá em
+        uma nova aba para você finalizar a compra.
+      </p>
+      <button id="btn-go-to-store" class="btn-submit">Ir para a Loja</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "59AAorhUygaY2nrZm", // <--- Substitua pela sua Public Key
+      });
+    })();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
