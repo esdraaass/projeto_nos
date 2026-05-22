@@ -40,7 +40,7 @@ const NOS_CONFIG = {
 
     // 5. Integrações (Supabase e EmailJS)
     integracoes: {
-        supabaseUrl: "https://xrmmsqdowaebhjplhugz.supabase.co/rest/v1/",
+        supabaseUrl: "https://xrmmsqdowaebhjplhugz.supabase.co",
         supabaseKey: "sb_publishable_lexKwQvGl-_B5woWqvIJpQ_HOG5v6vy",
 
         emailJsService: "service_ys6h05j",
