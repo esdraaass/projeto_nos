@@ -106,6 +106,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (footerLogo) footerLogo.innerText = NOS_CONFIG.casal.sigla;
 
     const enderecoBox = document.getElementById('endereco-entrega-texto');
+
+    // --- INJEÇÃO DINÂMICA DA CERIMÔNIA ---
+    if (NOS_CONFIG.evento.cerimonia) {
+        const cData = document.getElementById('cerimonia-data');
+        const cHora = document.getElementById('cerimonia-hora');
+        const cLocal = document.getElementById('cerimonia-local');
+        const cEndereco = document.getElementById('cerimonia-endereco');
+        
+        if (cData) cData.innerHTML = NOS_CONFIG.evento.cerimonia.dataExtenso;
+        if (cHora) cHora.innerHTML = NOS_CONFIG.evento.cerimonia.horario;
+        if (cLocal) cLocal.innerHTML = NOS_CONFIG.evento.cerimonia.local;
+        if (cEndereco) cEndereco.innerHTML = NOS_CONFIG.evento.cerimonia.endereco;
+    }
+        
     if (enderecoBox) enderecoBox.innerHTML = `<strong>${NOS_CONFIG.evento.enderecoEntrega}</strong>`;
 
     // Atualiza links de créditos do fotógrafo de forma dinâmica

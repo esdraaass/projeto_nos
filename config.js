@@ -13,16 +13,23 @@ const NOS_CONFIG = {
 
     // 2. Dados do Evento
     evento: {
-        // Data no formato YYYY-MM-DDTHH:MM:SS para o cronômetro funcionar corretamente
-        dataHora: "2027-01-01T00:00:00",
+        // Data no formato YYYY-MM-DDTHH:MM:SS para o cronômetro
+        dataHora: "2026-12-19T17:00:00",
 
-        // Endereço para entrega de presentes (Modal de Entrega)
-        enderecoEntrega: `Av Brasil, 1000, Bairro Candeias - Referência: <br>Vitória da Conquista - BA<br>CEP: 45028-903`,
+        enderecoEntrega: `Rua Maiquinique, 87, Bairro Presidente Médici - Referência: Black Joia<br>Itarantim - BA<br>CEP: 45780-000`,
 
-        // Link do Instagram do fotógrafo
-        instagramFotografo: "https://www.instagram.com/fotografo_casamento",
-        arrobaFotografo: "@fotógrafo"
+        instagramFotografo: "https://www.instagram.com/solucaslima/",
+        arrobaFotografo: "@solucaslima",
+
+        // ADICIONE ESTE NOVO BLOCO AQUI:
+        cerimonia: {
+            dataExtenso: "Sábado, 19 de Dezembro de 2026",
+            horario: "Às 17:00 Horas",
+            local: "Igreja Matriz de Itarantim",
+            endereco: "Praça Central, Centro — Itarantim - BA"
+        }
     },
+
 
     // 3. Contatos e Pagamentos
     contato: {
@@ -148,7 +155,7 @@ const NOS_CONFIG = {
             texto: "\"Ó meu bem quero estar ao seu lado<br />Quando amanhecer, quero estar ao seu lado\"",
             autor: "Scalene"
         },
-        {   
+        {
             texto: "\"Meu amor, eu agradeço<br />Para sempre o dia que eu te conheci\"",
             autor: "Tim Bernardes"
         },
@@ -171,5 +178,5 @@ const NOS_CONFIG = {
         { src: "https://images.unsplash.com/photo-1604881990409-b9f246db39da?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2FzYWx8ZW58MHwxfDB8fHwy", alt: "Ensaio Campo 4", oculta: true },
         { src: "https://images.unsplash.com/photo-1604881990409-b9f246db39da?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2FzYWx8ZW58MHwxfDB8fHwy", alt: "Ensaio Campo 4", oculta: true },
     ]
-    
+
 };

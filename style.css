@@ -1545,3 +1545,83 @@ body.locked {
     margin: 0 auto 20px auto;
     /* Centra a imagem e dá 20px de espaço para baixo */
 }
+
+/* ==========================================
+   SEÇÃO DA CERIMÔNIA (NÓS)
+   ========================================== */
+.cerimonia-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.cerimonia-main-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  color: var(--terracota-dark);
+  margin-bottom: 15px;
+}
+
+.cerimonia-divider {
+  width: 60px;
+  height: 1px;
+  background-color: var(--terracota-light);
+  margin: 0 auto 40px;
+}
+
+.cerimonia-details {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.cerimonia-block {
+  flex: 1;
+  min-width: 260px;
+  padding: 10px;
+}
+
+.cerimonia-block h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.9rem;
+  color: var(--terracota-medium);
+  margin-bottom: 12px;
+}
+
+.cerimonia-block h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.15rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.cerimonia-block p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  font-weight: 500;
+  margin: 0;
+}
+
+.cerimonia-subtext {
+  color: var(--text-light) !important;
+  font-size: 0.95rem !important;
+  margin-top: 6px !important;
+  line-height: 1.6;
+}
+
+/* Ajuste Responsivo para Celulares */
+@media (max-width: 768px) {
+  .cerimonia-details {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .cerimonia-main-title {
+    font-size: 2.3rem;
+  }
+}
