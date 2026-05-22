@@ -1,9 +1,20 @@
-// ==========================================
-// 1. CONFIGURAÇÃO DO SUPABASE (O CÉREBRO)
-// ==========================================
-const S_URL = 'https://vkvxiujrqeazpvwxgyqu.supabase.co';
-const S_KEY = 'sb_publishable_UQvFvpcaH3AniT8bDqmPCw_mha0tPCO';
+// ==========================================================================
+// 1. INICIALIZAÇÃO DINÂMICA DO SUCESSO (CÉREBRO DO "NÓS")
+// ==========================================================================
+
+// Validação de segurança para garantir que o config.js foi carregado
+if (typeof NOS_CONFIG === 'undefined') {
+    console.error("Erro crítico: O arquivo 'config.js' não foi encontrado ou não foi carregado corretamente.");
+}
+
+// Inicialização do Supabase usando as variáveis do arquivo de configuração
+const S_URL = NOS_CONFIG.integracoes.supabaseUrl;
+const S_KEY = NOS_CONFIG.integracoes.supabaseKey;
 const supabaseClient = supabase.createClient(S_URL, S_KEY);
+
+// Constantes globais obtidas dinamicamente
+const numeroWhatsApp = NOS_CONFIG.contato.numeroWhatsApp;
+const senhaCorreta = NOS_CONFIG.seguranca.senhaSite;
 
 // ==========================================
 // 2. FUNÇÕES DO MURAL (GLOBAIS)
@@ -16,7 +27,7 @@ async function buscarMensagens() {
         .order('created_at', { ascending: false });
 
     if (error) {
-        console.error('Erro ao buscar:', error.message);
+        console.error('Erro ao buscar mensagens:', error.message);
         return;
     }
 
@@ -75,14 +86,78 @@ async function apagarMensagem(id) {
 }
 
 // ==========================================
-// 3. INICIALIZAÇÃO E LÓGICA DE INTERAÇÃO
+// 3. INICIALIZAÇÃO E INJEÇÃO DE CONTEÚDO
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Iniciar Mural
+    // --- INJEÇÃO DINÂMICA DE TEXTOS DO CASAL ---
+    document.title = `${NOS_CONFIG.casal.sigla} | Nosso Casamento`;
+    
+    const h1Title = document.querySelector('.hero-content h1');
+    if (h1Title) h1Title.innerText = `${NOS_CONFIG.casal.noiva} & ${NOS_CONFIG.casal.noivo}`;
+    
+    const tagline = document.querySelector('.tagline');
+    if (tagline) tagline.innerText = NOS_CONFIG.casal.fraseEfeito;
+    
+    const navBrand = document.querySelector('.nav-brand');
+    if (navBrand) navBrand.innerText = NOS_CONFIG.casal.sigla;
+
+    const footerLogo = document.querySelector('.footer-logo');
+    if (footerLogo) footerLogo.innerText = NOS_CONFIG.casal.sigla;
+
+    const enderecoBox = document.getElementById('endereco-entrega-texto');
+    if (enderecoBox) enderecoBox.innerHTML = `<strong>${NOS_CONFIG.evento.enderecoEntrega}</strong>`;
+
+    // Atualiza links de créditos do fotógrafo de forma dinâmica
+    const creditosLinks = document.querySelectorAll('.photo-credit, .modal-credit');
+    creditosLinks.forEach(link => {
+        link.href = NOS_CONFIG.evento.instagramFotografo;
+        if(link.classList.contains('modal-credit')) {
+            link.innerHTML = `📷 Fotografia por ${NOS_CONFIG.evento.arrobaFotografo}`;
+        } else {
+            link.innerHTML = `📷 ${NOS_CONFIG.evento.arrobaFotografo}`;
+        }
+    });
+
+    // --- INJEÇÃO DINÂMICA DAS CITAÇÕES ---
+    const containerCitacoes = document.getElementById('citacoes-dinamicas');    
+    if (containerCitacoes && NOS_CONFIG.citacoes) {
+        containerCitacoes.innerHTML = '';
+        NOS_CONFIG.citacoes.forEach(citacao => {
+            containerCitacoes.innerHTML += `
+                <div class="card-citacao">
+                    <span class="quote-mark">"</span>
+                    <p class="citacao-texto">${citacao.texto}</p>
+                    <span class="citacao-autor">- ${citacao.autor}</span>
+                </div>
+            `;
+        });
+    }
+
+    // --- INJEÇÃO DINÂMICA DA GALERIA DE FOTOS ---
+    const containerGaleria = document.getElementById('galeria-dinamica');
+    if (containerGaleria && NOS_CONFIG.galeria) {
+        containerGaleria.innerHTML = '';
+        NOS_CONFIG.galeria.forEach(foto => {
+            const classeOculta = foto.oculta ? 'photo-hidden' : '';
+            containerGaleria.innerHTML += `
+                <div class="gallery-item-wrapper ${classeOculta}">
+                    <img src="${foto.src}" alt="${foto.alt}" class="gallery-item" loading="lazy" />
+                    <a href="${NOS_CONFIG.evento.instagramFotografo}" target="_blank" class="photo-credit">📷 ${NOS_CONFIG.evento.arrobaFotografo}</a>
+                </div>
+            `;
+        });
+    }
+
+    // Iniciar buscas iniciais
     buscarMensagens();
 
-    // Envio de Mensagem
+    // Inicialização do EmailJS com a chave dinâmica
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init({ publicKey: NOS_CONFIG.integracoes.emailJsKey || "" });
+    }
+
+    // Envio de Mensagem no Mural
     const form = document.getElementById('form-mensagem');
     if (form) {
         form.addEventListener('submit', async (e) => {
@@ -105,15 +180,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LÓGICA DA GALERIA (VER MAIS E MODAL) ---
+    // --- LÓGICA DA GALERIA (VER MAIS E LIGHTBOX) ---
     const loadMorePhotosBtn = document.getElementById('load-more-photos');
     const galleryItems = document.querySelectorAll('.gallery-item');
     const galleryModal = document.getElementById('gallery-modal');
     const modalImg = document.getElementById('modal-image');
-    const modalCaption = document.getElementById('caption'); // Seleciona a legenda
     let currentIndex = 0;
 
-    // Verifica se deve mostrar o botão "Ver Mais"
     const hiddenPhotos = document.querySelectorAll('.gallery-item-wrapper.photo-hidden');
     if (loadMorePhotosBtn) {
         if (hiddenPhotos.length > 0) {
@@ -126,39 +199,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Função que atualiza a imagem e a legenda no Modal
-    function atualizarModal(index) {
-        if (!galleryItems[index]) return;
-        
-        modalImg.src = galleryItems[index].src;
-        
-        // Busca a caixa (wrapper) da imagem atual para pegar o crédito
-        const wrapper = galleryItems[index].closest('.gallery-item-wrapper');
-        if (wrapper && modalCaption) {
-            const creditSpan = wrapper.querySelector('.photo-credit');
-            // Alterado de innerText para outerHTML para carregar o link (tag <a>) para dentro do modal
-            modalCaption.innerHTML = creditSpan ? creditSpan.outerHTML : '';
-        }
-    }
-
-    // Abre o Modal ao clicar na foto
     galleryItems.forEach((img, index) => {
-        const wrapper = img.closest('.gallery-item-wrapper');
-        if (wrapper) {
-            wrapper.addEventListener('click', (e) => {
-                // Se o clique foi em cima do link do instagram, para a execução e NÃO abre a foto
-                if (e.target.classList.contains('photo-credit')) {
-                    return; 
-                }
-                
-                currentIndex = index;
+        img.addEventListener('click', () => {
+            currentIndex = index;
+            if (galleryModal && modalImg) {
                 galleryModal.style.display = 'flex';
-                atualizarModal(currentIndex);
-            });
-        }
+                modalImg.src = img.src;
+            }
+        });
     });
 
-    // Controles do Modal (Fechar, Próxima, Anterior)
     if (galleryModal) {
         galleryModal.querySelector('.close-modal').addEventListener('click', () => {
             galleryModal.style.display = 'none';
@@ -166,16 +216,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         galleryModal.querySelector('.next').addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % galleryItems.length;
-            atualizarModal(currentIndex);
+            modalImg.src = galleryItems[currentIndex].src;
         });
 
         galleryModal.querySelector('.prev').addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-            atualizarModal(currentIndex);
+            modalImg.src = galleryItems[currentIndex].src;
         });
     }
 
-    // --- LÓGICA DE RSVP (CONFIRMAÇÃO DE PRESENÇA) ---
+    // --- LÓGICA DE RSVP INTEGRAÇÃO ---
     const formBusca = document.getElementById('form-busca-convidado');
     const formConfirma = document.getElementById('form-confirma-convidado');
     const step1 = document.getElementById('rsvp-step-1');
@@ -184,11 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const rsvpErro = document.getElementById('rsvp-erro');
     const nomeEncontradoEl = document.getElementById('nome-encontrado');
     const msgSucesso = document.getElementById('rsvp-mensagem-sucesso');
-    const radiosPresenca = document.getElementsByName('status_presenca');
-
+    
     let convidadoAtual = null;
 
-    // PASSO 1: Buscar convidado
     if (formBusca) {
         formBusca.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -207,37 +255,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (error) {
                 console.error("Erro na busca:", error);
-                rsvpErro.innerText = "Erro ao buscar no banco de dados. Tente novamente ou entre em contato com os noivos.";
+                rsvpErro.innerText = "Erro ao buscar. Tente novamente.";
                 rsvpErro.style.display = 'block';
                 return;
             }
 
             if (data && data.length > 0) {
-                // Nome exato encontrado!
                 convidadoAtual = data[0];
                 step1.style.display = 'none';
                 step2.style.display = 'block';
                 nomeEncontradoEl.innerText = `Olá, ${convidadoAtual.nome}!`;
             } else {
-                // Nome não encontrado (ou incompleto)
-                rsvpErro.innerText = "Nome não encontrado. Por favor, digite seu nome exatamente como consta no convite ou entre em contato com os noivos.";
+                rsvpErro.innerText = "Nome não encontrado. Digite exatamente como está no convite.";
                 rsvpErro.style.display = 'block';
             }
         });
     }
 
-    // PASSO 2: Enviar a confirmação para o banco
     if (formConfirma) {
         formConfirma.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btnConfirma = document.getElementById('btn-confirmar');
             const statusStr = document.querySelector('input[name="status_presenca"]:checked').value;
-            
             const vaiComparecer = statusStr === 'sim';
 
             btnConfirma.innerText = 'Enviando...';
 
-            // 1. Salva no Supabase primeiro
             const { error } = await supabaseClient
                 .from('convidados')
                 .update({ 
@@ -249,39 +292,31 @@ document.addEventListener('DOMContentLoaded', () => {
             if (error) {
                 alert("Erro: " + error.message);
                 btnConfirma.innerText = 'Enviar Confirmação';
-                console.error(error);
                 return;
             }
 
-            // 2. Prepara os dados para o EmailJS
             const templateParams = {
                 nome_convidado: convidadoAtual.nome,
                 status_presenca: vaiComparecer ? "✅ SIM, confirmou presença!" : "❌ NÃO, não poderá comparecer."
             };
 
-            // 3. Dispara o E-mail de notificação
-            // ATENÇÃO: Substitua pelos seus IDs gerados no EmailJS
-            emailjs.send('service_ys6h05j', 'template_pvlr358', templateParams)
-                .then(function(response) {
-                    console.log('E-mail enviado com sucesso!', response.status, response.text);
-                }, function(error) {
-                    console.error('Erro ao enviar e-mail de notificação:', error);
-                });
+            if (typeof emailjs !== 'undefined') {
+                emailjs.send(NOS_CONFIG.integracoes.emailJsService, NOS_CONFIG.integracoes.emailJsTemplate, templateParams)
+                    .then(response => console.log('Notificação enviada!'))
+                    .catch(err => console.error('Erro EmailJS:', err));
+            }
 
-            // 4. Mostra a tela de sucesso para o convidado
             step2.style.display = 'none';
             step3.style.display = 'block';
             
-            if (vaiComparecer) {
-                msgSucesso.innerText = "Sua presença foi confirmada com sucesso! Mal podemos esperar para celebrar com você.";
-            } else {
-                msgSucesso.innerText = "Que pena que não poderá ir! Agradecemos por nos avisar.";
-            }
+            msgSucesso.innerText = vaiComparecer 
+                ? "Sua presença foi confirmada com sucesso! Mal podemos esperar para celebrar consigo."
+                : "Agradecemos por nos avisar. É uma pena que não possa comparecer!";
         });
     }
 
-    // --- CONTAGEM REGRESSIVA ---
-    const weddingDate = new Date('2026-12-19T17:00:00').getTime();
+    // --- CONTAGEM REGRESSIVA DINÂMICA ---
+    const weddingDate = new Date(NOS_CONFIG.evento.dataHora).getTime();
     const countdownElement = document.getElementById('countdown');
     if (countdownElement) {
         setInterval(() => {
@@ -299,20 +334,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    // --- MENU INTELIGENTE E NAVEGAÇÃO ATIVA ---
+    // --- MENU INTELIGENTE E ROLAGEM ---
     const sections = document.querySelectorAll('section[id], header[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
-    const navBarEl = document.querySelector('.navbar'); // Seleciona o menu
+    const navBarEl = document.querySelector('.navbar'); 
 
     window.addEventListener('scroll', () => {
-        // 1. Efeito do Menu Inteligente (Transparente -> Escuro)
         if (window.scrollY > 50) {
             navBarEl.classList.add('scrolled');
         } else {
             navBarEl.classList.remove('scrolled');
         }
 
-        // 2. Navegação Ativa (Destaca onde o usuário está)
         let current = '';
         sections.forEach(section => {
             if (window.scrollY >= section.offsetTop - 150) {
@@ -324,28 +357,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- ANO RODAPÉ ---
+    // --- ANO ATUAL ---
     const currentYearSpan = document.getElementById('current-year');
     if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
 
-// ==========================================
-    // SISTEMA DE RESERVA VIA WHATSAPP (PRESENTES)
-    // ==========================================
+    // --- SISTEMA DE LISTA DE PRESENTES DINÂMICO ---
+    const gridPresentes = document.getElementById('grid-presentes-dinamico');
     
-    // 🔥 COLOQUE SEU NÚMERO DE WHATSAPP AQUI (Apenas números, com o DDI 55)
-    const numeroWhatsApp = "5577988745909"; 
+    // 1. Renderizar os presentes na tela
+    if (gridPresentes && NOS_CONFIG.presentes) {
+        gridPresentes.innerHTML = ''; // Limpa a grid
+        
+        NOS_CONFIG.presentes.forEach(presente => {
+            const classIndisponivel = presente.indisponivel ? 'indisponivel' : '';
+            const btnComprarHTML = presente.linkLoja 
+                ? `<button class="btn-gift btn-comprar" data-link="${presente.linkLoja}">Comprar item</button>` 
+                : '';
 
+            const cardHTML = `
+                <div class="gift-item ${classIndisponivel}">
+                  <img src="${presente.imagem}" alt="${presente.nome}" class="gift-img" loading="lazy" />
+                  <div class="gift-overlay">
+                    <h3>${presente.nome}</h3>
+                    <p>${presente.valor}</p>
+                    <div class="gift-buttons">
+                      <button class="btn-gift btn-pix">Pix</button>
+                      ${btnComprarHTML}
+                    </div>
+                  </div>
+                </div>
+            `;
+            gridPresentes.innerHTML += cardHTML;
+        });
+    }
+
+    // 2. Ativar os botões (agora que os presentes existem na tela)
     const botoesPix = document.querySelectorAll('.btn-pix');
     const botoesComprar = document.querySelectorAll('.btn-comprar');
+    const imagensPresentes = document.querySelectorAll('.gift-img'); // Para ampliar a foto
     const areaPix = document.getElementById('pix-info');
-    
     const deliveryModal = document.getElementById('delivery-modal');
     const btnGoToStore = document.getElementById('btn-go-to-store');
     let linkLojaAtual = '';
 
-    // 1. Quando clicar no botão PIX (Volta ao normal, APENAS mostra o QR Code)
     botoesPix.forEach(botao => {
-        botao.addEventListener('click', function() {
+        botao.addEventListener('click', () => {
             if (areaPix) {
                 areaPix.style.display = 'block';
                 areaPix.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -353,55 +409,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. Quando clicar no botão COMPRAR ITEM (Envia mensagem no WhatsApp)
     botoesComprar.forEach(botao => {
         botao.addEventListener('click', function(e) {
-            e.preventDefault(); // Evita que a página pule
-            
+            e.preventDefault(); 
             const nomePresente = this.closest('.gift-item').querySelector('h3').innerText;
             linkLojaAtual = this.getAttribute('data-link'); 
             
-            const mensagem = `Oi Vanessa e Esdras! Estou no site do casamento e acabei de escolher presentear vocês com: *${nomePresente}* (Vou comprar na loja)! 🎁`;
+            const mensagem = `Oi ${NOS_CONFIG.casal.noiva} e ${NOS_CONFIG.casal.noivo}! Escolhi presentear-vos com: *${nomePresente}*! 🎁`;
             const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
             
-            // Abre o WhatsApp para vocês saberem que alguém vai comprar este item
             window.open(linkWhatsApp, '_blank');
-            
-            // Em seguida, abre o Pop-up com os dados de entrega para o convidado
-            if (deliveryModal) {
-                deliveryModal.style.display = 'flex';
-            }
+            if (deliveryModal) deliveryModal.style.display = 'flex';
         });
     });
 
-    // 3. Quando clicar no botão "Ir para a loja" dentro do Modal de Entrega
     if (btnGoToStore) {
         btnGoToStore.addEventListener('click', () => {
             if (linkLojaAtual && linkLojaAtual !== 'COLOQUE_O_LINK_AQUI') {
                 window.open(linkLojaAtual, '_blank');
-            } else if (linkLojaAtual === 'COLOQUE_O_LINK_AQUI') {
-                alert('Atenção: Cadastre o link do produto no HTML (atributo data-link)');
             }
-            if (deliveryModal) {
-                deliveryModal.style.display = 'none';
-            }
+            if (deliveryModal) deliveryModal.style.display = 'none';
         });
     }
 
-    // Fechar o modal de entrega
     if (deliveryModal) {
-        const closeDeliveryModal = deliveryModal.querySelector('.close-delivery-modal');
-        if (closeDeliveryModal) {
-            closeDeliveryModal.addEventListener('click', () => {
+        const fecharModal = deliveryModal.querySelector('.close-delivery-modal');
+        if (fecharModal) {
+            fecharModal.addEventListener('click', () => {
                 deliveryModal.style.display = 'none';
             });
         }
-        deliveryModal.addEventListener('click', (e) => {
-            if (e.target === deliveryModal) {
-                deliveryModal.style.display = 'none';
+    }
+
+    // 3. Ativar o Modal de ampliar a imagem (Lightbox) para os presentes
+    const modalGaleria = document.getElementById('gallery-modal');
+    const modalImgGaleria = document.getElementById('modal-image');
+    imagensPresentes.forEach(img => {
+        img.addEventListener('click', () => {
+            if (modalGaleria && modalImgGaleria && !img.closest('.gift-item').classList.contains('indisponivel')) {
+                modalGaleria.style.display = 'flex';
+                modalImgGaleria.src = img.src;
+                // Esconde as setas da galeria de fotos normais
+                document.querySelector('.modal .prev').style.display = 'none';
+                document.querySelector('.modal .next').style.display = 'none';
             }
         });
-    }
+    });
 
     // --- MENU MOBILE ---
     const menuToggle = document.getElementById('menu-toggle');
@@ -416,8 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const mobileLinks = document.querySelectorAll('.nav-links ul li a');
-    mobileLinks.forEach(link => {
+    document.querySelectorAll('.nav-links ul li a').forEach(link => {
         link.addEventListener('click', () => {
             navLinksContainer.classList.remove('active');
             navbar.classList.remove('nav-open');
@@ -425,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- ANIMAÇÃO FADE-IN ---
+    // --- ANIMAÇÃO INTERSECTION OBSERVER ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -445,46 +497,71 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// EFEITO ROLETA 3D (Citações)
+// 4. EFEITOS ESPECIAIS (3D E AUDIO)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    // Roleta 3D
     const wrapper = document.querySelector('.citacoes-wrapper');
     const cards = document.querySelectorAll('.card-citacao');
 
     if (wrapper && cards.length > 0) {
         function updateRoulette() {
             const wrapperCenter = wrapper.getBoundingClientRect().top + (wrapper.clientHeight / 2);
-
             cards.forEach(card => {
                 const cardCenter = card.getBoundingClientRect().top + (card.clientHeight / 2);
                 const distance = wrapperCenter - cardCenter;
-                
-                let rotateX = (distance / wrapper.clientHeight) * 50; 
-                rotateX = Math.max(-60, Math.min(60, rotateX));
-
+                let rotateX = Math.max(-60, Math.min(60, (distance / wrapper.clientHeight) * 50));
                 let scale = 1 - Math.abs(distance / wrapper.clientHeight) * 0.2;
                 let opacity = 1 - Math.abs(distance / wrapper.clientHeight) * 0.9;
-
                 card.style.transform = `perspective(600px) rotateX(${rotateX}deg) scale(${scale})`;
                 card.style.opacity = Math.max(0, opacity);
             });
-        }
-
+        };
         wrapper.addEventListener('scroll', updateRoulette);
-        window.addEventListener('resize', updateRoulette);
         setTimeout(updateRoulette, 100); 
+    }
+
+    // Player de música flutuante
+    const audio = document.getElementById('bg-music');
+    const musicToggle = document.getElementById('music-toggle');
+    const musicIcon = document.getElementById('music-icon');
+    const playerWrapper = document.getElementById('player-wrapper'); 
+    const volumeSlider = document.getElementById('volume-slider'); 
+
+    const playSVG = `<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d=\"M8 5v14l11-7z\"/></svg>`;
+    const pauseSVG = `<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d=\"M6 19h4V5H6v14zm8-14v14h4V5h-4z\"/></svg>`;
+
+    if (audio && volumeSlider) audio.volume = volumeSlider.value;
+
+    if (musicToggle && audio) {
+        musicToggle.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    if(musicIcon) musicIcon.innerHTML = pauseSVG; 
+                    if(playerWrapper) playerWrapper.classList.add('playing');
+                }).catch(err => console.log("Autoplay bloqueado", err));
+            } else {
+                audio.pause();
+                if(musicIcon) musicIcon.innerHTML = playSVG; 
+                if(playerWrapper) playerWrapper.classList.remove('playing');
+            }
+        });
+    }
+
+    if (volumeSlider && audio) {
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+        });
     }
 });
 
 // ==========================================
-// PROTEÇÃO POR SENHA DO SITE (Todo Acesso)
+// 5. TELA DE BLOQUEIO (SEGURANÇA POR SENHA)
 // ==========================================
 const accessModal = document.getElementById('access-modal');
 const btnAccess = document.getElementById('btn-access');
 const passInput = document.getElementById('access-password');
 const errorMsg = document.getElementById('access-error');
-
-const senhaCorreta = "123456"; 
 
 if (accessModal) {
     document.body.classList.add('locked');
@@ -493,63 +570,22 @@ if (accessModal) {
 }
 
 function verificarSenha() {
-    if (passInput.value.trim().toUpperCase() === senhaCorreta.toUpperCase()) {
+    if (passInput.value.trim() === senhaCorreta) {
         accessModal.style.opacity = '0';
         setTimeout(() => {
             accessModal.style.display = 'none';
             document.body.classList.remove('locked');
         }, 500);
     } else {
-        errorMsg.style.display = 'block';
+        if (errorMsg) errorMsg.style.display = 'block';
         passInput.value = '';
         passInput.focus();
     }
 }
 
-if (btnAccess) {
-    btnAccess.addEventListener('click', verificarSenha);
-}
-
+if (btnAccess) btnAccess.addEventListener('click', verificarSenha);
 if (passInput) {
     passInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') verificarSenha();
     });
 }
-
-// ==========================================
-// AMPLIAR IMAGENS DOS PRESENTES
-// ==========================================
-const giftImages = document.querySelectorAll('.gift-img');
-const modalGaleria = document.getElementById('gallery-modal');
-const modalImgGaleria = document.getElementById('modal-image');
-const legendaModal = document.getElementById('caption');
-const setaAnterior = document.querySelector('.modal .prev');
-const setaProxima = document.querySelector('.modal .next');
-
-giftImages.forEach(img => {
-    img.addEventListener('click', () => {
-        if (modalGaleria && modalImgGaleria) {
-            modalGaleria.style.display = 'flex';
-            modalImgGaleria.src = img.src;
-            if (legendaModal) legendaModal.innerHTML = img.alt;
-            
-            if (setaAnterior) setaAnterior.style.display = 'none';
-            if (setaProxima) setaProxima.style.display = 'none';
-        }
-    });
-});
-
-const botaoFecharModal = document.querySelector('.close-modal');
-if (botaoFecharModal) {
-    botaoFecharModal.addEventListener('click', () => {
-        if (setaAnterior) setaAnterior.style.display = 'block';
-        if (setaProxima) setaProxima.style.display = 'block';
-    });
-}
-
-window.addEventListener('click', (e) => {
-    if (e.target === modalGaleria) {
-        if (setaAnterior) setaAnterior.style.display = 'block';
-        if (setaProxima) setaProxima.style.display = 'block';
-    }
-});
