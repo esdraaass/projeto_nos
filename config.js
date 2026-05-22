@@ -16,10 +16,10 @@ const NOS_CONFIG = {
         // Data no formato YYYY-MM-DDTHH:MM:SS para o cronômetro
         dataHora: "2026-12-19T17:00:00",
 
-        enderecoEntrega: `Rua Maiquinique, 87, Bairro Presidente Médici - Referência: Black Joia<br>Itarantim - BA<br>CEP: 45780-000`,
+        enderecoEntrega: `Rua K, 87, Bairro Boa Vista - Referência: <br>Vitória da Conquista - BA<br>CEP: 45026-050`,
 
-        instagramFotografo: "https://www.instagram.com/solucaslima/",
-        arrobaFotografo: "@solucaslima",
+        instagramFotografo: "https://www.instagram.com/fotógrafo/",
+        arrobaFotografo: "@fotógrafo",
 
         // ADICIONE ESTE NOVO BLOCO AQUI:
         cerimonia: {
