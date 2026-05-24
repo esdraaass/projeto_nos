@@ -153,7 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (containerGaleria && NOS_CONFIG.galeria) {
         containerGaleria.innerHTML = '';
         NOS_CONFIG.galeria.forEach(foto => {
-            const classeOculta = foto.oculta ? 'photo-hidden' : '';
+            // ADICIONAMOS A CLASSE 'foto-extra' AQUI ABAIXO:
+            const classeOculta = foto.oculta ? 'photo-hidden foto-extra' : '';
             containerGaleria.innerHTML += `
                 <div class="gallery-item-wrapper ${classeOculta}">
                     <img src="${foto.src}" alt="${foto.alt}" class="gallery-item" loading="lazy" />
@@ -201,41 +202,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalImg = document.getElementById('modal-image');
     let currentIndex = 0;
 
-    const hiddenPhotos = document.querySelectorAll('.gallery-item-wrapper.photo-hidden');
+    // --- NOVA LÓGICA: VER MAIS / VER MENOS ---
+    const fotosExtras = document.querySelectorAll('.gallery-item-wrapper.foto-extra');
+    const secaoGaleria = document.getElementById('galeria'); // Usado para ancorar o scroll
+
     if (loadMorePhotosBtn) {
-        if (hiddenPhotos.length > 0) {
+        if (fotosExtras.length > 0) {
             loadMorePhotosBtn.style.display = 'block';
         }
         
+        let galeriaExpandida = false;
+
         loadMorePhotosBtn.addEventListener('click', () => {
-            hiddenPhotos.forEach(photo => photo.classList.remove('photo-hidden'));
-            loadMorePhotosBtn.style.display = 'none';
-        });
-    }
+            galeriaExpandida = !galeriaExpandida; // Inverte o estado (True/False)
 
-    galleryItems.forEach((img, index) => {
-        img.addEventListener('click', () => {
-            currentIndex = index;
-            if (galleryModal && modalImg) {
-                galleryModal.style.display = 'flex';
-                modalImg.src = img.src;
+            fotosExtras.forEach(photo => {
+                if (galeriaExpandida) {
+                    photo.classList.remove('photo-hidden'); // Mostra as fotos
+                } else {
+                    photo.classList.add('photo-hidden'); // Esconde novamente
+                }
+            });
+
+            // Altera o texto do botão e faz o scroll suave de volta
+            if (galeriaExpandida) {
+                loadMorePhotosBtn.innerHTML = 'Ver menos fotos ▲';
+            } else {
+                loadMorePhotosBtn.innerHTML = 'Ver mais fotos ▼';
+                
+                // Detalhe Premium: Rola a tela de volta para o título da galeria
+                secaoGaleria.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
             }
-        });
-    });
-
-    if (galleryModal) {
-        galleryModal.querySelector('.close-modal').addEventListener('click', () => {
-            galleryModal.style.display = 'none';
-        });
-
-        galleryModal.querySelector('.next').addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % galleryItems.length;
-            modalImg.src = galleryItems[currentIndex].src;
-        });
-
-        galleryModal.querySelector('.prev').addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-            modalImg.src = galleryItems[currentIndex].src;
         });
     }
 
